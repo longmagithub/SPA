@@ -1,0 +1,475 @@
+/*Global setting*/
+body, html{/**/
+    font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+}
+a{
+    cursor: pointer;
+}
+
+/*Navigation*/
+.navbar-custom{
+
+    border: none;
+    color: white;
+}
+@media (min-width: 768px){
+    .navbar-custom{
+        padding: 8px 0;
+        -webkit-transition: padding .3s;
+        -moz-transition: padding .3s;
+        transition: padding .3s;
+    }
+}
+
+.navbar-inverse .navbar-brand{
+    color: #f0f0f0
+}
+.navbar-inverse .navbar-nav>li>a{
+    color: #d6d6d6
+}
+.menu{
+    color: white;
+}
+
+/*Home section*/
+.intro{
+
+    top:0%;
+    height: 100vh;
+    background-size: 100%;
+    background: url("IMG/body_BG_trans.jpg") no-repeat;
+    /*;
+    max-width: 100%;*/
+}
+.intro_channel{
+    /**/visibility: hidden;
+    position: absolute;
+    padding-left: 45px;
+    top: 200px;
+    font-size: 2.2em;
+}
+.intro_news{
+    visibility: hidden;
+    position: absolute;
+    right: 80px;
+    top: 90px;
+    text-align: right;
+    font-size: 2.2em;
+}
+.intro_con{
+    visibility: hidden;
+    position: absolute;
+    right: 120px;
+    top: 290px;
+    text-align: right;
+    font-size: 2.2em;
+}
+.intro_main{
+    visibility: hidden;
+    position: relative;
+    text-align: center;
+    top: 65%;
+    font-size: 5.5em;
+}
+.intro_text{
+    position: relative;
+    top: 45%;
+    left: 8%;
+    width: 30%;
+
+}
+.showBorder{
+    border-style: solid;
+}
+
+/*News section*/
+.news_title{
+    text-align: center;
+    padding: 40px 0 25px 0;
+}
+.well_list{
+    position: relative;
+    margin-top: 50px;
+    /*
+    width: 90%;
+    margin-left: 5%;
+    */
+}
+.channel_tag{
+    /*
+    padding: 2px 3px 1px 3px;
+    width: auto;*/
+    display: inline-block;
+    padding: 3px 0;
+}
+.channel_tag.ng-enter{
+    animation: 0.6s appear;
+}
+.channel_tag.ng-leave{
+    animation: 0.6s disappear;
+}
+
+.span_icon{
+    margin-bottom: 12px;
+    margin-left: -5px;
+}
+#panel_channel_list{
+    padding-top: 10px;
+    padding-left: 40px;
+    margin-bottom: 25px;
+}
+.panel_news{
+    /*margin-top: 20vh;*/
+}
+.news_list{
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 2px;/**/
+    width: 95%;
+    margin-left: 2.5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display: inline-block;
+    text-align: left;
+}
+.news_animate{}
+.news_animate.ng-enter{
+    animation: 0.6s floatIn;
+}
+/*
+.news_animate.ng-leave{
+    animation: 0.6s floatOut;
+}*/
+.news_changePage{
+
+    text-align: right;
+    width: 95%;
+}
+small{
+    font-size: 9.5pt;
+}
+.loading{
+    padding:20vh 0;
+    text-align: center;
+}
+.add_channel{
+}
+.add_channel.ng-enter{
+    animation: 0.7s scaleIn;
+}
+.add_channel.ng-leave{
+    animation: 0.7s scaleOut;
+}
+#myModal img{
+    max-width: 100%;
+}
+/*Statement Section*/
+#Statement{
+    background-color: #444444;
+    padding: 75px 0;
+}
+.statement__title{
+    text-align: center;
+
+    padding-bottom: 50px;/**/
+    color: white;
+
+}
+.state_img{
+
+    margin: 0 auto;
+}
+.state_text{
+    margin: 50px auto 30px auto;
+    text-align: center;
+    color: azure;
+}
+
+/*Realization*/
+#Realization{
+    padding: 80px 0;
+}
+#realization_title{
+    text-align: center;
+    margin-bottom: 50px;
+}
+#realization_text{
+    padding: 0 10%;
+}
+
+/*Contact footer*/
+#About{
+    background-color: #444444;
+    color: white;
+    text-align: center;
+    padding: 25px 0;
+}
+
+/*@Media*/
+@media only screen and (max-width:  768px){
+    .intro_channel{
+        font-size: 1.8em;
+    }
+    .intro_con{
+        font-size: 1.8em;
+    }
+    .intro_news{
+        font-size: 1.8em;
+    }
+    .intro_main{
+        font-size: 3em;
+    }
+}
+
+/*Animation*/
+@keyframes appear {
+    from {
+        opacity: 0;
+        margin-left: 2px;
+
+    }
+    to {
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+@-webkit-keyframes appear {
+    from {
+        opacity: 0;
+        margin-left: 2px;
+
+    }
+    to {
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+@-moz-keyframes appear {
+    from {
+        opacity: 0;
+        margin-left: 2px;
+
+    }
+    to {
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+@-o-keyframes appear {
+    from {
+        opacity: 0;
+        margin-left: 2px;
+
+    }
+    to {
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+
+@keyframes disappear {
+    from{
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+    to {
+        opacity: 0;
+        transform: rotateX(90deg);
+    }
+}
+@-webkit-keyframes disappear {
+    from{
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+    to {
+        opacity: 0;
+        transform: rotateX(90deg);
+    }
+}
+@-moz-keyframes disappear {
+    from{
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+    to {
+        opacity: 0;
+        transform: rotateX(90deg);
+    }
+}
+@-o-keyframes disappear {
+    from{
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+    to {
+        opacity: 0;
+        transform: rotateX(90deg);
+    }
+}
+
+@keyframes scaleIn {
+    from{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+}
+@-webkit-keyframes scaleIn {
+    from{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+}
+@-moz-keyframes scaleIn {
+    from{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+}
+@-o-keyframes scaleIn {
+    from{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    from{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+    to{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+}
+@-webkit-keyframes scaleOut {
+    from{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+    to{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+}
+@-moz-keyframes scaleOut {
+    from{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+    to{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+}
+@-o-keyframes scaleOut {
+    from{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+    to{
+        transform: scale(1,0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes floatIn {
+    from{
+        opacity: 0;
+        transform: translate(0, 5px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+@-webkit-keyframes floatIn {
+    from{
+        opacity: 0;
+        transform: translate(0, 5px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+@-moz-keyframes floatIn {
+    from{
+        opacity: 0;
+        transform: translate(0, 5px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+@-o-keyframes floatIn {
+    from{
+        opacity: 0;
+        transform: translate(0, 5px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes floatOut {
+    from{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    to{
+        opacity: 0;
+        transform: translate(0, -5px);
+    }
+}
+@-webkit-keyframes floatOut {
+    from{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    to{
+        opacity: 0;
+        transform: translate(0, -5px);
+    }
+}
+@-moz-keyframes floatOut {
+    from{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    to{
+        opacity: 0;
+        transform: translate(0, -5px);
+    }
+}
+@-o-keyframes floatOut {
+    from{
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    to{
+        opacity: 0;
+        transform: translate(0, -5px);
+    }
+}

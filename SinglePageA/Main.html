@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Single Page Application</title>
+
+    <!-- AngularJS
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
+
+    -->
+    <!--Bootstrap-->
+    <!-- Latest compiled and minified CSS
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!-- jQuery library
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+    <!-- Latest compiled JavaScript
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--local resource-->
+
+    <script src="Resource/AngularJS/angular.min.js"></script>
+    <script src="Resource/AngularJS/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+
+    <link rel="stylesheet" href="Resource/bootstrap/css/bootstrap.min.css">
+    <script src="Resource/jquery/jquery.min.js"></script>
+    <script src="Resource/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Resource/CSS/hover-min.css">
+    <link rel="stylesheet" type="text/css" href="Resource/CSS/animate.css">
+    <link rel="stylesheet" href="Resource/font-awesome-4.6.3/css/font-awesome.min.css">
+
+    <script src="AngularJS/app.js"></script>
+    <script src="AngularJS/controller.js"></script>
+    <script src="AngularJS/newsService.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="Resource/JS/main.js"></script>
+
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar" data-offset="20">
+    <!--Navigation-->
+    <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top affix-top ">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-list" aria-expanded="true">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="menu">菜单</span>
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">新闻小站</a>
+            </div>
+            <div class="navbar-collapse collapse" id="nav-list" aria-expanded="false">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden active"><a href="#page-top"></a></li>
+                    <li class="page-scorll">
+                        <a href="#News">新闻列表</a>
+                    </li>
+                    <li class="page-scorll">
+                        <a href="#Statement">技术框架</a>
+                    </li>
+                    <li class="page-scorll">
+                        <a href="#Realization">实现流程</a>
+                    </li>
+                    <li class="page-scorll">
+                        <a href="#About">关于</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Header-->
+    <header>
+        <div class="container-fluid"></div>
+            <div class="intro">
+                <div id="intro_channel" class="intro_channel">10+新闻频道</div>
+                <div id="intro_news" class="intro_news">600+实时信息</div>
+                <div id="intro_con" class="intro_con">不再错过重要资讯</div>
+                <div id="intro_main" class="intro_main">新闻小站</div>
+            </div>
+
+    </header>
+    <!--News List-->
+    <section id="News" ng-app="mySPA" ng-controller="mySPACtrl">
+        <div class="container-fluid">
+            <div class="news_title">
+                <h1>新闻列表</h1>
+            </div>
+            <!--The panel-->
+            <div class="panel panel-info panel_news">
+                <div id="panel_channel_list" class="panel-heading">
+                    <div class="channel_tag" ng-repeat="channel in shownChannel">
+                        <button type="button" class="btn btn-primary"
+                                ng-click="changeChannel(channel)">{{channel}}
+                        </button>
+                        <span class="hvr-icon-sink-away span_icon" ng-click="dislikeChannel(channel)"></span>
+                    </div>
+
+                </div>
+                <div class=" news_changePage"><a class="hvr-icon-spin" ng-click="nextPage()">换一换</a></div>
+                <div ng-if="newsList.length==0" class="loading">
+                    <h2 class="animated infinite bounce">读取中……</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6 news_animate" ng-repeat="nw in newsList">
+                            <button class="btn btn-info btn-lg news_list hvr-box-shadow-outset hvr-float-shadow"
+                                    ng-click="setDetail(nw.title, nw.html)"
+                                    data-toggle="modal" data-target="#myModal">
+                                {{nw.title}}<br>
+                                <small>{{nw.pubDate}}&nbsp;&nbsp;{{nw.source}}</small>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer add_channel" ng-if="hideChannel.length > 0">
+                    <h3>添加频道:</h3>
+                    <button type="button" class="btn btn-link hvr-icon-float-away"
+                            ng-repeat="channel in hideChannel"
+                            ng-click="likeChannel(channel)">{{channel}}</button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{{detail.title}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div ng-bind-html="detail.content"></div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Statement-->
+    <section id="Statement">
+        <header>
+            <div class="container-fluid">
+                <div class="statement__title">
+                    <h1>技术框架</h1>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <img class="img-responsive img-rounded state_img" src="IMG/html5.png"/>
+                        <div class="state_text">
+                            <h3>HTML5 + CSS3</h3>
+                            <p>标签语义化<br>多设备跨平台</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img class="img-responsive img-rounded state_img" src="IMG/bootstrap.png" />
+                        <div class="state_text">
+                            <h3>Bootstrap Layout</h3>
+                            <p>成熟框架<br>响应式布局</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img class="img-responsive img-rounded state_img" src="IMG/jquery.png" />
+                        <div class="state_text">
+                            <h3>JQuery Animation</h3>
+                            <p>JS与页面分离<br>灵活动画效果</p>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-md-4 col-sm-6">
+                        <img class="img-responsive state_img" src="IMG/json.png" />
+                        <div class="state_text">
+                            <h3>Json data</h3>
+                        </div>
+                    </div>-->
+                    <div class="col-md-3 col-sm-6">
+                        <img class="img-responsive img-rounded state_img" src="IMG/angularjs.png" />
+                        <div class="state_text">
+                            <h3>AngularJS Binding</h3>
+                            <p>双向数据绑定<br>动态显示</p>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-md-4 col-sm-6">
+                        <img class="img-responsive state_img" src="IMG/opensource.png"/>
+                        <div class="state_text">
+                            <h3>Other Libraries</h3>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </main>
+
+    </section>
+    <!--Realization-->
+    <section id="Realization">
+        <header>
+            <div class="container">
+                <div id="realization_title">
+                    <h1>技术实现</h1>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div id="realization_text">
+                    <h4>后台数据</h4>
+                    <p>----在Service定义调用方法,controller定义调用参数,从<a href="https://www.showapi.com/api/lookPoint/109">易源接口API</a> 获取JSON格式的新闻数据,绑定到AngularJS的$scope参数</p>
+                    <br>
+                    <h4>前端展示</h4>
+                    <p>----基于HTML5、CSS3、Javascript、Bootstrap和JQuery的响应式布局,适配多种浏览器和移动端,可实时显示对AngularJS数据的修改</p>
+                    <br>
+                    <h4>动态效果</h4>
+                    <p>----引入多种开源库,如Animate.css, Hover.css, FontAwesome等</p>
+                    <br>
+                </div>
+            </div>
+        </main>
+
+    </section>
+    <!--Contact-->
+    <footer id="About">
+        <div class="container">
+            <div class="col-sm-6">
+                <div id="contact_info">
+                    <h3>联系方式</h3>
+                    <p>Tel: &nbsp;XXX-XXXX-XXXX<br>
+                        Email:&nbsp;XXXX@xxx.com
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>关于</h3>
+                <p>All Rights Reserved.<br>Copyright © My WebSite.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
